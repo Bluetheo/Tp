@@ -451,7 +451,7 @@ subnet 10.5.1.0 netmask 255.255.255.0 {
 }
 ````
 B. Test avec un nouveau client
-
+☀️ Créez une nouvelle machine client client3.tp5.b1
 ````
 [theo@client3 ~]$ ping ynov.com
 PING ynov.com (172.67.74.226) 56(84) bytes of data.
