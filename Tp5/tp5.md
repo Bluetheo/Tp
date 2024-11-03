@@ -93,6 +93,7 @@ Last login: Mon Oct 14 15:20:18 2024
        valid_lft forever preferred_lft forever
     inet6 fe80::a00:27ff:fefc:5970/64 scope link
        valid_lft forever preferred_lft forever
+
 ````
 
 # Hostname
@@ -123,6 +124,7 @@ Operating System: Rocky Linux 9.4 (Blue Onyx)
  Hardware Vendor: innotek GmbH
   Hardware Model: VirtualBox
 Firmware Version: VirtualBox
+[theo@routeur ~]$
 ````
 
 Client1:
@@ -151,6 +153,7 @@ Operating System: Rocky Linux 9.4 (Blue Onyx)
  Hardware Vendor: innotek GmbH
   Hardware Model: VirtualBox
 Firmware Version: VirtualBox
+[theo@client1 ~]$
 ````
 
 Client2:
@@ -179,13 +182,14 @@ Operating System: Rocky Linux 9.4 (Blue Onyx)
  Hardware Vendor: innotek GmbH
   Hardware Model: VirtualBox
 Firmware Version: VirtualBox
+[theo@client2 ~]$
 ````
 
 # Ping
 
 Routeur vers client1 et client2:
 ````
-[theo@localhost ~]$ ping 10.5.1.11
+[theo@routeur ~]$ ping 10.5.1.11
 PING 10.5.1.11 (10.5.1.11) 56(84) bytes of data.
 64 bytes from 10.5.1.11: icmp_seq=1 ttl=64 time=1.27 ms
 64 bytes from 10.5.1.11: icmp_seq=2 ttl=64 time=0.381 ms
@@ -198,7 +202,7 @@ PING 10.5.1.11 (10.5.1.11) 56(84) bytes of data.
 --- 10.5.1.11 ping statistics ---
 7 packets transmitted, 7 received, 0% packet loss, time 6158ms
 rtt min/avg/max/mdev = 0.338/0.698/1.269/0.364 ms
-[theo@localhost ~]$ ping 10.5.1.12
+[theo@routeur ~]$ ping 10.5.1.12
 PING 10.5.1.12 (10.5.1.12) 56(84) bytes of data.
 64 bytes from 10.5.1.12: icmp_seq=1 ttl=64 time=1.38 ms
 64 bytes from 10.5.1.12: icmp_seq=2 ttl=64 time=0.395 ms
@@ -212,7 +216,7 @@ rtt min/avg/max/mdev = 0.351/0.723/1.377/0.411 ms
 
 client1 vers client2 et routeur:
 ````
-[theo@localhost ~]$ ping 10.5.1.254
+[theo@client1 ~]$ ping 10.5.1.254
 PING 10.5.1.254 (10.5.1.254) 56(84) bytes of data.
 64 bytes from 10.5.1.254: icmp_seq=1 ttl=64 time=0.704 ms
 64 bytes from 10.5.1.254: icmp_seq=2 ttl=64 time=0.466 ms
@@ -222,7 +226,7 @@ PING 10.5.1.254 (10.5.1.254) 56(84) bytes of data.
 --- 10.5.1.254 ping statistics ---
 4 packets transmitted, 4 received, 0% packet loss, time 3066ms
 rtt min/avg/max/mdev = 0.466/0.546/0.704/0.093 ms
-[theo@localhost ~]$ ping 10.5.1.12
+[theo@client1 ~]$ ping 10.5.1.12
 PING 10.5.1.12 (10.5.1.12) 56(84) bytes of data.
 64 bytes from 10.5.1.12: icmp_seq=1 ttl=64 time=1.23 ms
 64 bytes from 10.5.1.12: icmp_seq=2 ttl=64 time=0.471 ms
@@ -240,7 +244,7 @@ rtt min/avg/max/mdev = 0.357/0.640/1.227/0.343 ms
 ☀️ Déjà, prouvez que le routeur a un accès internet
 
 ````
-[theo@localhost ~]$ ping www.ynov.com
+[theo@routeur ~]$ ping www.ynov.com
 PING www.ynov.com (172.67.74.226) 56(84) bytes of data.
 64 bytes from 172.67.74.226 (172.67.74.226): icmp_seq=1 ttl=46 time=46.6 ms
 64 bytes from 172.67.74.226 (172.67.74.226): icmp_seq=2 ttl=46 time=124 ms
@@ -257,10 +261,10 @@ rtt min/avg/max/mdev = 46.647/69.610/123.829/27.924 ms
 ☀️ Activez le routage
 
 ````
-[theo@localhost ~]$ sudo firewall-cmd --add-masquerade --permanent
+[theo@routeur ~]$ sudo firewall-cmd --add-masquerade --permanent
 [sudo] password for theo:
 success
-[theo@localhost ~]$ sudo firewall-cmd --reload
+[theo@routeur ~]$ sudo firewall-cmd --reload
 success
 ````
 
